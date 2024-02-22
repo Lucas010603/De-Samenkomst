@@ -5,9 +5,4 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-            alert("jQuery is working in child view!");
-        });
-    </script>
 @endsection
