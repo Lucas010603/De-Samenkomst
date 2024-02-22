@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -36,5 +37,10 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->with('error', 'Invalid credentials');
         }
+    }
+
+    public function signOut()
+    {
+        Auth::logout();
     }
 }

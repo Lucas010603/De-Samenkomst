@@ -7,6 +7,8 @@ use App\Http\Controllers\CustomerController;
 
 // non auth routes
 Route::get('/', [AuthController::class, 'index'])->name("login");
+Route::post('/sign-out', [AuthController::class, 'signOut'])->name("sign-out");
+
 
 // non auth API routes
 Route::prefix('api')->group(function () {
