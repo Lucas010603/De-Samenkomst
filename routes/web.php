@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CustomerController;
 
 // non auth routes
 Route::get('/', [AuthController::class, 'index'])->name("login");
 
-// non auth api routes
+// non auth API routes
 Route::prefix('api')->group(function () {
     Route::post('/login', [AuthController::class, 'attemptLogin'])->name("attemptLogin");
 });
@@ -16,12 +16,28 @@ Route::prefix('api')->group(function () {
 // authenticated routes
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/reservation', [ReservationController::class, 'index'])->name("reservation");
-    Route::get('/reservation/dashboard', [ReservationController::class, 'dashboard'])->name("reservation.dashboard");
-    Route::get('/reservation/new', [ReservationController::class, 'new'])->name("reservation.new");
-    Route::get('/reservation/edit', [ReservationController::class, 'edit'])->name("reservation.edit");
+    Route::prefix('reservation')->group(function () {
+        Route::get('/', [ReservationController::class, 'index'])->name("reservation");
+        Route::get('/dashboard', [ReservationController::class, 'dashboard'])->name("reservation.dashboard");
+        Route::get('/new', [ReservationController::class, 'new'])->name("reservation.new");
+        Route::get('/edit', [ReservationController::class, 'edit'])->name("reservation.edit");
+    });
 
-    // admin routes
+    Route::prefix('customer')->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name("customer");
+        Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
+        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit");
+        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
+    });
+
+    //authenticated API routes:
+    Route::prefix('api')->group(function () {
+        Route::prefix('customer')->group(function () {
+            Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
+        });
+    });
+
+    //authenticated admin routes
     Route::middleware(['role:admin'])->group(function () {
 
     });

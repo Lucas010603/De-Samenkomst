@@ -15,38 +15,33 @@ class CustomerController extends Controller
         $this->customerService = new CustomerService();
     }
 
-    public function Index()
+    public function index()
     {
         $customers = $this->customerService->getAllCustomers();
-        return view('customer.Index', ['customers' => $customers]);
+        return view('customer.index', ['customers' => $customers]);
     }
 
-    public function Create()
+    public function new()
     {
         $customers = $this->customerService->getAllCustomers();
-        return view('/customer/Create', ['customers' => $customers]);
+        return view('customer.new', ['customers' => $customers]);
     }
 
-    public function Store(Request $request)
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            'company' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-        ]);
-
-        $newProduct = $this->customerService->createCustomer($data);
+        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']);
+        $this->customerService->createCustomer($data);
         return redirect()->route('customer.index');
     }
 
-    public function Edit(Customer $customer)
+    public function edit(Customer $customer)
     {
-        return view('custom.edit',['customer' => $customer]);
+        return view('customer.edit',['customer' => $customer]);
     }
 
-    public function Delete()
+    public function delete()
     {
         $customers = $this->customerService->getAllCustomers();
-        return view('/customer/Delete', ['customers' => $customers]);
+        return view('/customer/delete', ['customers' => $customers]);
     }
 }

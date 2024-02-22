@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    background: #181824;
     font-family: Arial;
 }
 
@@ -192,4 +191,8 @@ nav li#user-info > span:after {
 
 .menu-item{
     font-size: 13pt;
+}
+
+.navItem{
+    text-decoration: none; color: inherit;
 }
