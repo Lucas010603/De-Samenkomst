@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,10 @@ Route::get('/test', 'App\Http\Controllers\ReservationController@test');
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/customer', [CustomerController::class, 'index'])->name("customer.index");
+Route::get('/customer/create', [CustomerController::class, 'create'])->name("customer.create");
+Route::post('/customer/store', [CustomerController::class, 'store'])->name("customer.store");
+
+Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name("customer.edit");
+Route::get('/customer/delete', [CustomerController::class, 'delete'])->name("customer.delete");
