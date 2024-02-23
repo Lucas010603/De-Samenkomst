@@ -37,10 +37,12 @@
                 <span>Klant toevoegen</span>
             </li>
         </a>
+        <a href="{{ route('rooms') }}" class="navItem">
         <li class="menu-item">
             <i class='bx bxs-bed'></i>
             <span>Kamers</span>
         </li>
+        </a>
         <li class="menu-item">
             <i class='bx bxs-add-to-queue'></i>
             <span>Kamers toevoegen</span>

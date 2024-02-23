@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RoomController;
 
 // non auth routes
 Route::get('/', [AuthController::class, 'index'])->name("login");
@@ -32,6 +33,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
     });
 
+    Route::prefix('room')->group(function () {
+        Route::get('/', [RoomController::class, 'index'])->name("rooms");
+//        Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
+//        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit");
+//        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
+    });
+
     //authenticated API routes:
     Route::prefix('api')->group(function () {
         Route::prefix('customer')->group(function () {
@@ -41,6 +49,14 @@ Route::middleware(['auth'])->group(function () {
 
     //authenticated admin routes
     Route::middleware(['role:admin'])->group(function () {
-
+        Route::prefix('room')->group(function () {
+            Route::get('/new', [RoomController::class, 'index'])->name("room.new");
+        });
+        // Authenticated Admin API routes
+        Route::prefix('api')->group(function () {
+            Route::prefix('room')->group(function () {
+                Route::post('/store', [RoomController::class, 'store'])->name("room.store");
+            });
+        });
     });
 });
