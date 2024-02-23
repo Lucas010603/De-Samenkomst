@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static create($data)
- */
-class Customer extends Model
+class Room extends Model
 {
     protected $guarded = [];
-    protected $table = "customer";
-
+    protected $table = "room";
+    use HasFactory;
 
     public function reservations(){
-        return $this->hasMany(Reservation::class, "customer_id", "id");
+        return $this->hasMany(Reservation::class, "room_id", "id");
     }
 }

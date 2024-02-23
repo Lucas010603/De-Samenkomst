@@ -37,6 +37,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
         });
+
+        Route::prefix('reservation')->group(function () {
+            Route::get('/store', [ReservationController::class, 'index'])->name("reservation.store");
+        });
     });
 
     //authenticated admin routes
