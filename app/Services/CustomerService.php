@@ -27,15 +27,12 @@ class CustomerService
     public function deleteCustomer($id)
     {
         $customer = Customer::find($id);
-        if($customer && $customer->active == 1){
+        if ($customer && $customer->active == 1) {
             $customer->update(['active' => 0]);
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
-
     }
 
 
