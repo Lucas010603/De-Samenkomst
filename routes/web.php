@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('api')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
+            Route::put('/delete/{customer}', [CustomerController::class, 'delete'])->name("customer.delete");
         });
     });
 
