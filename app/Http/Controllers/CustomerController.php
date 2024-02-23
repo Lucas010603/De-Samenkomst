@@ -31,7 +31,7 @@ class CustomerController extends Controller
     {
         $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']);
         $this->customerService->createCustomer($data);
-        return redirect()->route('customer.index');
+        return redirect()->route('customer');
     }
 
     public function edit(Customer $customer)
