@@ -43,11 +43,11 @@
             <span>Kamers</span>
         </li>
         </a>
+        @if(auth()->user()->role->name == "admin")
         <li class="menu-item">
             <i class='bx bxs-add-to-queue'></i>
             <span>Kamers toevoegen</span>
         </li>
-        @if(auth()->user()->role->name == "admin")
             <li class="menu-item">
                 <i class='bx bxs-user-detail'></i>
                 <span>Medewerkers</span>

@@ -50,12 +50,14 @@ Route::middleware(['auth'])->group(function () {
     //authenticated admin routes
     Route::middleware(['role:admin'])->group(function () {
         Route::prefix('room')->group(function () {
-            Route::get('/new', [RoomController::class, 'index'])->name("room.new");
+            Route::get('/new', [RoomController::class, 'new'])->name("room.new");
+            // TODO: Add edit route for rooms
         });
         // Authenticated Admin API routes
         Route::prefix('api')->group(function () {
             Route::prefix('room')->group(function () {
                 Route::post('/store', [RoomController::class, 'store'])->name("room.store");
+                // TODO: Add delete request for rooms
             });
         });
     });

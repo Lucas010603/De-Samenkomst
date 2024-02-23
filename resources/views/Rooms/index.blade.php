@@ -21,6 +21,8 @@
             <td>{{ $room->monitor }}</td>
             <td></td>
             <td>
+
+{{--                TODO: voeg edit en delete button toe--}}
 {{--                <a href="{{ route('customer.edit', ['customer' => $customer]) }}" class="btn btn-success">Edit</a>--}}
 
 {{--                <form action="{{ route('customer.delete', $customer->id) }}" method="POST" style="display: inline;">--}}

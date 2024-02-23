@@ -17,7 +17,7 @@ class RoomController extends Controller
 
     public function index()
     {
-        $rooms = $this->roomService->getAllRooms();
+        $rooms = $this->roomService->getAllTypes();
         return (view('rooms.index', compact('rooms')));
     }
 
@@ -28,6 +28,8 @@ class RoomController extends Controller
     }
 
     public function store(Request $request){
-
+        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']);
+        $this->roomService->createRoom($data);
+        return redirect()->route('room');
     }
 }
