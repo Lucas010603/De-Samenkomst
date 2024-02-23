@@ -17,7 +17,6 @@ Route::prefix('api')->group(function () {
 
 // authenticated routes
 Route::middleware(['auth'])->group(function () {
-
     Route::prefix('reservation')->group(function () {
         Route::get('/', [ReservationController::class, 'index'])->name("reservation");
         Route::get('/dashboard', [ReservationController::class, 'dashboard'])->name("reservation.dashboard");
@@ -36,11 +35,11 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('api')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
+            Route::put('/delete/{customer}', [CustomerController::class, 'delete'])->name("customer.delete");
         });
     });
 
     //authenticated admin routes
     Route::middleware(['role:admin'])->group(function () {
-
     });
 });

@@ -28,7 +28,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <input type="submit" value="Opslaan">
+            <input type="submit" class="btn btn-primary" value="Opslaan">
         </div>
     </form>
 @endsection

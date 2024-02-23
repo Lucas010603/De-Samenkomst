@@ -6,19 +6,23 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("reservation.index");
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return view("reservation.dashboard");
     }
 
-    public function new(){
+    public function new()
+    {
         return view("reservation.new");
     }
 
-    public function edit(){
+    public function edit()
+    {
         return view("reservation.edit");
     }
 }
