@@ -21,7 +21,8 @@ class ReservationController extends Controller
         return view("reservation.index", compact("reservations"));
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return view("reservation.dashboard");
     }
 
@@ -31,7 +32,8 @@ class ReservationController extends Controller
         return view("reservation.new", compact("rooms", "customers"));
     }
 
-    public function edit(){
+    public function edit()
+    {
         return view("reservation.edit");
     }
 
