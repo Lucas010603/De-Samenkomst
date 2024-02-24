@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Room;
 use App\Services\ReservationService;
+use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
@@ -32,5 +33,12 @@ class ReservationController extends Controller
 
     public function edit(){
         return view("reservation.edit");
+    }
+
+    public function store(Request $request){
+        dd($request);
+//        $data = $request->validate(['room' => '', 'customer' => 'required|email', 'phone' => 'required|numeric']);
+//        $this->customerService->createCustomer($data);
+//        return redirect()->route('customer');
     }
 }

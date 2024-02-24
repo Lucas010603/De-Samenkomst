@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('reservation')->group(function () {
-            Route::get('/store', [ReservationController::class, 'index'])->name("reservation.store");
+            Route::post('/store', [ReservationController::class, 'store'])->name("reservation.store");
         });
     });
 
