@@ -25,8 +25,8 @@
                 <td>{{ $reservation->start->format("d-m-Y H:i")}}</td>
                 <td>{{ $reservation->end->format("d-m-Y H:i")}}</td>
                 <td>
-                    <a href="{{ route('reservation.edit', ['id' => $reservation->id]) }}" class="btn btn-success">Edit</a>
-                    <a class="btn btn-danger" onclick="deleteReservation({{$reservation->id}})">Delete</a>
+                    <a href="{{ route('reservation.edit', ['id' => $reservation->id]) }}" class="btn btn-success">Bijwerken</a>
+                    <a class="btn btn-danger" onclick="deleteReservation({{$reservation->id}})">Verwijderen</a>
                 </td>
             </tr>
         @endforeach
