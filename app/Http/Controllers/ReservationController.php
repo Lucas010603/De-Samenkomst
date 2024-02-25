@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Reservation;
 use App\Models\Room;
 use App\Services\ReservationService;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class ReservationController extends Controller
         $this->reservationService = new ReservationService();
     }
 
-    public function index(){
+    public function index()
+    {
         $reservations = $this->reservationService->getAll();
         return view("reservation.index", compact("reservations"));
     }
@@ -26,21 +28,52 @@ class ReservationController extends Controller
         return view("reservation.dashboard");
     }
 
-    public function new(){
+    public function new()
+    {
         $rooms = Room::get();
         $customers = Customer::get();
         return view("reservation.new", compact("rooms", "customers"));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view("reservation.edit");
+        $rooms = Room::get();
+        $customers = Customer::get();
+        $reservation = Reservation::where(['active' => 1, 'id' => $id])->with('customer', 'room')->first();
+        return view("reservation.edit", compact('reservation', 'rooms', 'customers'));
     }
 
-    public function store(Request $request){
-        dd($request);
-//        $data = $request->validate(['room' => '', 'customer' => 'required|email', 'phone' => 'required|numeric']);
-//        $this->customerService->createCustomer($data);
-//        return redirect()->route('customer');
+    public function store(Request $request)
+    {
+        $data = $request->validate(
+            [
+                'customer_id' => 'required',
+                'room_id' => 'required',
+                'start' => 'required|date',
+                'end' => 'required|date'
+            ]
+        );
+
+        $this->reservationService->store($data);
+        return redirect()->route('reservation');
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = $request->validate(
+            [
+                'customer_id' => 'required',
+                'room_id' => 'required',
+                'start' => 'required|date',
+                'end' => 'required|date'
+            ]
+        );
+        $this->reservationService->update($id, $data);
+        return redirect()->route('reservation');
+    }
+
+    public function delete($id)
+    {
+        return response()->json($this->reservationService->delete($id));
     }
 }

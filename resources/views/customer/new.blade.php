@@ -5,7 +5,7 @@
     <form method="post" action="{{url('/api/customer/store')}}">
         @csrf
         @method('post')
-
+{{--        ToDo @Stef: add optional field "naam"--}}
         <div class="mb-3">
             <label for="company" class="form-label">Bedrijfsnaam</label>
             <input type="text" class="form-control" id="company" name="company" placeholder="Bedrijfsnaam">

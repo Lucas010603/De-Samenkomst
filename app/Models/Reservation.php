@@ -9,13 +9,27 @@ class Reservation extends Model
 {
     protected $guarded = [];
     protected $table = "reservation";
+    protected $dates = ['start', 'end'];
+    public $timestamps = false;
     use HasFactory;
 
-    public function room(){
-        return $this->hasOne(Room::class, "room_id", "id");
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::retrieved(function ($model) {
+            $model->start = $model->asDateTime($model->start);
+            $model->end = $model->asDateTime($model->end);
+        });
     }
 
-    public function customer(){
-        return $this->hasOne(Customer::class, "customer_id", "id");
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }
