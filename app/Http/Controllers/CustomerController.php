@@ -29,19 +29,37 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']);
+//        ToDo: @Stef: company is optional
+        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']
+        );
         $this->customerService->createCustomer($data);
         return redirect()->route('customer');
     }
 
     public function edit(Customer $customer)
     {
-        return view('customer.edit',['customer' => $customer]);
+        return view('customer.edit', ['customer' => $customer]);
     }
 
-    public function delete()
+    public function update($id, Request $request)
     {
-        $customers = $this->customerService->getAllCustomers();
-        return view('/customer/delete', ['customers' => $customers]);
+//        ToDo: @Stef: company is optional
+        $data = $request->validate([
+            'company' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric'
+        ]);
+
+        $this->customerService->updateCustomer($id, $data);
+
+        return redirect()->route('customer');
+    }
+
+
+    public function delete($id, Request $request)
+    {
+        $customers = $this->customerService->deleteCustomer($id);
+
+        return redirect()->route('customer');
     }
 }

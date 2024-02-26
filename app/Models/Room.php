@@ -11,7 +11,8 @@ class Room extends Model
     protected $table = "room";
     use HasFactory;
 
-    public function reservations(){
+    public function reservations()
+    {
         return $this->hasMany(Reservation::class, "room_id", "id");
     }
 }

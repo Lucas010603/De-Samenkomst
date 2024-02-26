@@ -10,6 +10,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Customer extends Model
 {
-   protected $table = "customer";
+    protected $guarded = [];
+    public $timestamps = false;
+    protected $table = "customer";
 
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, "customer_id", "id");
+    }
 }
