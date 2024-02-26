@@ -11,6 +11,7 @@ class User extends AuthenticatableUser implements Authenticatable
 
 {
     protected $guarded = [];
+    public $timestamps = false;
     protected $table = "user";
 
     public function role()

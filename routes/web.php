@@ -31,11 +31,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
     });
 
+    Route::prefix('user')->group(function () {
+        Route::get('/', [CustomerController::class, 'index'])->name("user");
+        Route::get('/new', [CustomerController::class, 'new'])->name("user.new");
+        Route::get('/edit/{user}', [CustomerController::class, 'edit'])->name("user.edit");
+        Route::get('/delete', [CustomerController::class, 'delete'])->name("user.delete");
+    });
+
     //authenticated API routes:
     Route::prefix('api')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
             Route::put('/delete/{customer}', [CustomerController::class, 'delete'])->name("customer.delete");
+            Route::put('/update/{customer}', [CustomerController::class, 'update'])->name("customer.update");
         });
     });
 
