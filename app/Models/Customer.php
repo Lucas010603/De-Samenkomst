@@ -14,4 +14,9 @@ class Customer extends Model
     public $timestamps = false;
     protected $table = "customer";
 
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, "customer_id", "id");
+    }
 }

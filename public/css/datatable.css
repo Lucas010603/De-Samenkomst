@@ -1,16 +1,16 @@
-#customerTable thead th {
+.table thead th {
     background-color: #343a40;
     color: #ffffff;
 }
 
-#customerTable tbody tr:nth-child(even) {
+.table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#customerTable tbody tr:nth-child(odd) {
+.table tbody tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
-#customerTable tbody tr:hover {
+.table tbody tr:hover {
     background-color: #e9ecef;
 }

@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>Klant Bewerken</h1>
+{{--    ToDo @Stef: slightly better to use route name with (route()) instead of url()--}}
     <form method="post" action="{{ url('/api/customer/update/' . $customer->id) }}
     ">
         @csrf
@@ -32,7 +33,7 @@
             @enderror
         </div>
         <div class="mb-3">
-            <input type="submit"class="btn btn-primary" value="Bijwerken">
+            <input type="submit" class="btn btn-primary" value="Bijwerken">
         </div>
     </form>
 @endsection

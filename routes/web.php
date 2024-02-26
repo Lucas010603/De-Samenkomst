@@ -21,13 +21,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [ReservationController::class, 'index'])->name("reservation");
         Route::get('/dashboard', [ReservationController::class, 'dashboard'])->name("reservation.dashboard");
         Route::get('/new', [ReservationController::class, 'new'])->name("reservation.new");
-        Route::get('/edit', [ReservationController::class, 'edit'])->name("reservation.edit");
+        Route::get('/edit/{id}', [ReservationController::class, 'edit'])->name("reservation.edit");
     });
 
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name("customer");
         Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
-        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit");
+        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit"); //ToDo @Stef: use customer id instead of the object
         Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
     });
 
@@ -40,10 +40,18 @@ Route::middleware(['auth'])->group(function () {
 
     //authenticated API routes:
     Route::prefix('api')->group(function () {
+
+        // ToDo @Stef: route names inside api context should have prefix "api."
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
             Route::put('/delete/{customer}', [CustomerController::class, 'delete'])->name("customer.delete");
-            Route::put('/update/{customer}', [CustomerController::class, 'update'])->name("customer.update");
+            // ToDo @Stef: route for update missing?
+        });
+
+        Route::prefix('reservation')->group(function () {
+            Route::post('/store', [ReservationController::class, 'store'])->name("api.reservation.store");
+            Route::post('/update/{id}', [ReservationController::class, 'update'])->name("api.reservation.update");
+            Route::put('/delete/{id}', [ReservationController::class, 'delete'])->name("api.reservation.delete");
         });
     });
 

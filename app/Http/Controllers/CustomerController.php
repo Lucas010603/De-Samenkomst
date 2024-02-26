@@ -29,6 +29,7 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
+//        ToDo: @Stef: company is optional
         $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']
         );
         $this->customerService->createCustomer($data);
@@ -42,6 +43,7 @@ class CustomerController extends Controller
 
     public function update($id, Request $request)
     {
+//        ToDo: @Stef: company is optional
         $data = $request->validate([
             'company' => 'required',
             'email' => 'required|email',

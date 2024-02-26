@@ -6,6 +6,8 @@ use App\Models\Customer;
 
 class CustomerService
 {
+//    ToDo @Stef: Service scope already implies "Customer", therefor function names can be shortened
+//    ToDo example: createCustomer(...) -> create(...)
     public function getAllCustomers()
     {
         // Retrieve all customers from the database

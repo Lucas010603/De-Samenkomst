@@ -1,8 +1,55 @@
 @extends("components.main")
 
-@section("content")
-    ibero nisi nobis, non perferendis reiciendis suscipit temporibus unde. A ab alias autem beatae commodi consectetur corporis cupiditate deleniti distinctio dolorem doloribus earum enim eos est ex fugiat fugit id inventore itaque iusto, laboriosam laudantium maxime nemo obcaecati officia omnis pariatur perspiciatis quisquam repellat temporibus unde velit vitae voluptatum. Culpa in ipsa optio perferendis quidem? A ab accusantium aspernatur autem consequuntur cum cumque dicta eligendi enim fugit harum iste itaque iure minus, nam neque officiis optio repellat sit soluta veniam voluptatibus?
-@endsection
+@section('content')
+    <table id="reservationTable" class="table">
+        <thead>
+        <tr>
+            <th scope="col">Bedrijfsnaam</th>
+            <th scope="col">Klantnaam</th>
+            <th scope="col">kamer naam</th>
+            <th scope="col">kamer nummer</th>
+            <th scope="col">Contract</th>
+            <th scope="col">Start</th>
+            <th scope="col">Einde</th>
+            <th scope="col">Acties</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($reservations as $reservation)
+            <tr>
+                <td>{{ $reservation->customer->company ?? "n.v.t."}}</td>
+                <td>{{ $reservation->customer->name ?? "n.v.t."}}</td>
+                <td>{{ $reservation->room->name ?? "n.v.t."}}</td>
+                <td>{{ $reservation->room->number ?? "n.v.t."}}</td>
+                <td>{{ $reservation->is_contract ? "ja" : "nee"}}</td>
+                <td>{{ $reservation->start->format("d-m-Y H:i")}}</td>
+                <td>{{ $reservation->end->format("d-m-Y H:i")}}</td>
+                <td>
+                    <a href="{{ route('reservation.edit', ['id' => $reservation->id]) }}" class="btn btn-success">Bijwerken</a>
+                    <a class="btn btn-danger" onclick="deleteReservation({{$reservation->id}})">Verwijderen</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
-@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#reservationTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
+                }
+            });
+        });
+
+        function deleteReservation(id){
+            axios.put(`/api/reservation/delete/${id}`)
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
+
+                });
+        }
+    </script>
 @endsection
