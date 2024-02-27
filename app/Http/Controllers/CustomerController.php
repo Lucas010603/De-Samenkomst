@@ -17,49 +17,63 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $customers = $this->customerService->getAllCustomers();
+        $customers = $this->customerService->getAll();
         return view('customer.index', ['customers' => $customers]);
     }
 
     public function new()
     {
-        $customers = $this->customerService->getAllCustomers();
+        $customers = $this->customerService->getAll();
         return view('customer.new', ['customers' => $customers]);
     }
 
     public function store(Request $request)
     {
-//        ToDo: @Stef: company is optional
-        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']
+        $data = $request->validate(['company' => 'nullable', 'email' => 'required|email', 'phone' => 'required|numeric']
         );
-        $this->customerService->createCustomer($data);
+        $this->customerService->create($data);
         return redirect()->route('customer');
     }
 
-    public function edit(Customer $customer)
+    public function edit($id)
     {
+        $customer = Customer::find($id);
         return view('customer.edit', ['customer' => $customer]);
     }
 
     public function update($id, Request $request)
     {
-//        ToDo: @Stef: company is optional
         $data = $request->validate([
-            'company' => 'required',
+            'name' => 'required',
+            'company' => 'nullable',
             'email' => 'required|email',
             'phone' => 'required|numeric'
         ]);
 
-        $this->customerService->updateCustomer($id, $data);
+        $this->customerService->update($id, $data);
 
         return redirect()->route('customer');
     }
 
-
-    public function delete($id, Request $request)
+    public function delete($id)
     {
-        $customers = $this->customerService->deleteCustomer($id);
-
-        return redirect()->route('customer');
+        return response()->json($this->customerService->delete($id));
     }
+
+    public function status($status)
+    {
+        if ($status === 'active') {
+            $customers = Customer::where('active', 1)->get();
+
+        } elseif ($status === 'deleted') {
+            $customers = Customer::where('active', 0)->get();
+
+        } else {
+            $customers = Customer::all();
+
+        }
+
+        return response()->json($customers);
+    }
+
 }

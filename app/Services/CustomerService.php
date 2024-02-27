@@ -6,27 +6,25 @@ use App\Models\Customer;
 
 class CustomerService
 {
-//    ToDo @Stef: Service scope already implies "Customer", therefor function names can be shortened
-//    ToDo example: createCustomer(...) -> create(...)
-    public function getAllCustomers()
+
+    public function getAll()
     {
-        // Retrieve all customers from the database
-        return Customer::all();
+        return Customer::where('active', 1)->get();
     }
 
-    public function createCustomer($data)
+    public function create($data)
     {
         return Customer::insert($data);
     }
 
-    public function updateCustomer($id, $data)
+    public function update($id, $data)
     {
         $customer = Customer::find($id);
-        $customer->update($data);
-        return $customer;
+       return $customer->update($data);
+
     }
 
-    public function deleteCustomer($id)
+    public function delete($id)
     {
         $customer = Customer::find($id);
         if ($customer && $customer->active == 1) {

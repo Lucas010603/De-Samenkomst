@@ -11,7 +11,8 @@
         </div>
         <div class="mb-3">
             <label for="company" class="form-label">Klant / Bedrijf</label>
-            <select name="customer_id" id="company" class="form-select" data-error-message="Selecteer een geldige klant of bedrijf">
+            <select name="customer_id" id="company" class="form-select"
+                    data-error-message="Selecteer een geldige klant of bedrijf">
                 <option selected disabled value="">Klant / Bedrijf</option>
                 @foreach($customers as $customer)
                     <option {{$customer->id == $reservation->customer->id ? "selected" : ""}} value="{{ $customer->id }}">{{ $customer->name }} {{ $customer->company ?? '' }}</option>
@@ -21,19 +22,25 @@
         <div class="mb-3">
             <label for="room" class="form-label">Kamer</label>
             <select name="room_id" id="room" class="form-select" data-error-message="Selecteer een geldige kamer">
-                <option  selected disabled value="">Kamer</option>
+                <option selected disabled value="">Kamer</option>
                 @foreach($rooms as $room)
-                    <option {{$room->id == $reservation->room->id ? "selected" : ""}} value="{{ $room->id }}"> {{ $room->name ?? '' }} ({{ $room->number }})</option>
+                    <option {{$room->id == $reservation->room->id ? "selected" : ""}} value="{{ $room->id }}"> {{ $room->name ?? '' }}
+                        ({{ $room->number }})
+                    </option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
             <label for="start" class="form-label">Van</label>
-            <input type="datetime-local" class="form-control" id="start" name="start" data-error-message="vul een geldige start datum en tijd in" value="{{ \Carbon\Carbon::parse($reservation->start)->format('Y-m-d\TH:i') }}">
+            <input type="datetime-local" class="form-control" id="start" name="start"
+                   data-error-message="vul een geldige start datum en tijd in"
+                   value="{{ \Carbon\Carbon::parse($reservation->start)->format('Y-m-d\TH:i') }}">
         </div>
         <div class="mb-3">
             <label for="end" class="form-label">Tot</label>
-            <input type="datetime-local" class="form-control" id="end" name="end" data-error-message="vul een geldige eind datum en tijd in" value="{{ \Carbon\Carbon::parse($reservation->end)->format('Y-m-d\TH:i') }}">
+            <input type="datetime-local" class="form-control" id="end" name="end"
+                   data-error-message="vul een geldige eind datum en tijd in"
+                   value="{{ \Carbon\Carbon::parse($reservation->end)->format('Y-m-d\TH:i') }}">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" value="Bijwerken">
