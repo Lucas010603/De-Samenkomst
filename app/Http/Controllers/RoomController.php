@@ -32,9 +32,23 @@ class RoomController extends Controller
     public function edit($id)
     {
         $rooms = Room::where(['active' => 1, 'id' => $id])->first();
-        //$roomTypes = Room::where('active', 1)->with('type')->get();
         $roomTypes = RoomType::where('active', 1)->get();
         return view("Rooms.edit", compact('rooms', 'roomTypes'));
+    }
+
+    public function store(Request $request){
+        $data = $request->validate(
+            [
+                'number' => 'required|numeric',
+                'name' => 'required',
+                'max_capacity' => 'required',
+                'type_id' => 'required',
+                'table_configuration' => 'required',
+                'monitor' => 'required'
+            ]
+        );
+        $this->roomService->createRoom($data);
+        return redirect()->route('room');
     }
 
     public function update($id, Request $request)
@@ -53,18 +67,8 @@ class RoomController extends Controller
         return redirect()->route('room');
     }
 
-    public function store(Request $request){
-        $data = $request->validate(
-            [
-             'number' => 'required|numeric',
-             'name' => 'required',
-             'max_capacity' => 'required',
-             'type_id' => 'required',
-             'table_configuration' => 'required',
-             'monitor' => 'required'
-            ]
-        );
-        $this->roomService->createRoom($data);
-        return redirect()->route('room');
+    public function delete($id)
+    {
+        return response()->json($this->roomService->delete($id));
     }
 }

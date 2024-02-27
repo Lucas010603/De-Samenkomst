@@ -7,7 +7,7 @@
         @method('post')
         <div class="mb-3">
             <label class="form-label">Kamernummer</label>
-            <input type="number" class="form-control" id="company" name="number" placeholder="123" value="{{$rooms->number}}" data-error-message="Geef een geldig kamer nummer op">
+            <input type="text" class="form-control" id="company" name="number" placeholder="123" value="{{$rooms->number}}" data-error-message="Geef een geldig kamer nummer op">
         </div>
         <div class="mb-3">
             <label class="form-label">Kamernaam</label>

@@ -8,8 +8,10 @@
         <th scope="col">Kamer Naam</th>
         <th scope="col">Maximale Capaciteit</th>
         <th scope="col">Tafelindeling</th>
-        <th scope="col">Aantal Monitoren</th>
+        <th scope="col">Monitoren</th>
+        @if(auth()->user()->role->name == "admin")
         <th scope="col">Acties</th>
+        @endif
     </tr>
     </thead>
     <tbody>
@@ -20,10 +22,12 @@
             <td>{{ $room->max_capacity }}</td>
             <td>{{ $room->table_configuration }}</td>
             <td>{{ $room->monitor }}</td>
+            @if(auth()->user()->role->name == "admin")
             <td>
                 <a href="{{ route('room.edit', ['id' => $room->id]) }}" class="btn btn-success">Bijwerken</a>
-                <a class="btn btn-danger" onclick="deleteReservation({{$room->id}})">Verwijderen</a>
+                <a class="btn btn-danger" onclick="deleteRoom({{$room->id}})">Verwijderen</a>
             </td>
+            @endif
         </tr>
     @endforeach
     </tbody>
@@ -39,12 +43,12 @@
     });
 
     function deleteRoom(id){
-        axios.put(`/api/reservation/delete/${id}`)
+        axios.put(`/api/room/delete/${id}`)
             .then(response => {
                 window.location.reload();
             })
             .catch(error => {
-
+                console.log(error);
             });
     }
 </script>

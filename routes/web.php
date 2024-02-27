@@ -34,9 +34,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'index'])->name("room");
-        Route::get('/new', [RoomController::class, 'new'])->name("room.new");
-//        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit");
-//        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
     });
 
     //authenticated API routes:
@@ -54,13 +51,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/update/{id}', [ReservationController::class, 'update'])->name("api.reservation.update");
             Route::put('/delete/{id}', [ReservationController::class, 'delete'])->name("api.reservation.delete");
         });
-
-        Route::prefix('room')->group(function () {
-//        Route::get('store', [RoomController::class, 'store'])->name("api.room.store");
-//        Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
-//        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit");
-//        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
-        });
     });
 
     //authenticated admin routes
@@ -68,14 +58,13 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('room')->group(function () {
             Route::get('/new', [RoomController::class, 'new'])->name("room.new");
             Route::get('/edit/{id}', [RoomController::class, 'edit'])->name("room.edit");
-            // TODO: Add edit route for rooms
         });
         // Authenticated Admin API routes
         Route::prefix('api')->group(function () {
             Route::prefix('room')->group(function () {
                 Route::post('/store', [RoomController::class, 'store'])->name("api.room.store");
                 Route::post('/update/{id}', [RoomController::class, 'update'])->name("api.room.update");
-                // TODO: Add delete request for rooms
+                Route::put('/delete/{id}', [RoomController::class, 'delete'])->name("api.room.delete");
             });
         });
     });
