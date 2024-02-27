@@ -10,6 +10,7 @@ Route::get('/', [AuthController::class, 'index'])->name("login");
 Route::post('/sign-out', [AuthController::class, 'signOut'])->name("sign-out");
 
 
+
 // non auth API routes
 Route::prefix('api')->group(function () {
     Route::post('/login', [AuthController::class, 'attemptLogin'])->name("attemptLogin");
@@ -22,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [ReservationController::class, 'dashboard'])->name("reservation.dashboard");
         Route::get('/new', [ReservationController::class, 'new'])->name("reservation.new");
         Route::get('/edit/{id}', [ReservationController::class, 'edit'])->name("reservation.edit");
+        Route::get('/filter', [ReservationController::class, 'filter'])->name('reservation.filter');
     });
 
     Route::prefix('customer')->group(function () {
@@ -29,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
         Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit"); //ToDo @Stef: use customer id instead of the object
         Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
+        Route::get('/filter', [CustomerController::class, 'filter'])->name('customer.filter');
     });
 
     //authenticated API routes:
