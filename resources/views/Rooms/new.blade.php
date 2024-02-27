@@ -34,7 +34,7 @@
             <input type="text" class="form-control" id="phone" name="monitor" placeholder="Voor hoeveel personen is het kantoor" data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
         <div class="mb-3">
-            <input type="submit" value="Opslaan">
+            <input type="submit" class="btn btn-primary" value="Opslaan">
         </div>
     </form>
     @if(count($errors))

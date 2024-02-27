@@ -20,7 +20,6 @@
             <td>{{ $room->max_capacity }}</td>
             <td>{{ $room->table_configuration }}</td>
             <td>{{ $room->monitor }}</td>
-            <td></td>
             <td>
                 <a href="{{ route('room.edit', ['id' => $room->id]) }}" class="btn btn-success">Bijwerken</a>
                 <a class="btn btn-danger" onclick="deleteReservation({{$room->id}})">Verwijderen</a>

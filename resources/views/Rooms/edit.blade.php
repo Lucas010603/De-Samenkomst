@@ -36,12 +36,12 @@
             <input type="text" class="form-control" id="phone" name="monitor" placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->monitor}}" data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
         <div class="mb-3">
-            <input type="submit" value="Opslaan">
+            <input type="submit" class="btn btn-primary" value="Opslaan">
         </div>
     </form>
     @if(count($errors))
         <div id="form-submit-fail" class="alert alert-danger" role="alert">
-            Klant bijwerken mislukt. probeer het nog eens.
+            Kamer bijwerken mislukt. probeer het nog eens.
         </div>
     @endif
 @endsection

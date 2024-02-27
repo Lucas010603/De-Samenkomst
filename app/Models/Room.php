@@ -9,6 +9,7 @@ class Room extends Model
 {
     protected $guarded = [];
     protected $table = "room";
+    public $timestamps = false;
     use HasFactory;
 
     public function reservations()
