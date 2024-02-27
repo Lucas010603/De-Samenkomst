@@ -14,3 +14,32 @@
 .table tbody tr:hover {
     background-color: #e9ecef;
 }
+
+.btn.btn-success {
+    width: 75px;
+    height: 40px;
+}
+
+.btn.btn-danger {
+    width: 75px;
+    height: 40px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    /* Adjust styles for small screens */
+    .table thead th {
+        font-size: 14px; /* Adjust font size for header cells */
+    }
+
+    .table tbody tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd; /* Add borders between rows */
+    }
+
+    .table tbody td {
+        text-align: left;
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
