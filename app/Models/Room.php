@@ -9,10 +9,16 @@ class Room extends Model
 {
     protected $guarded = [];
     protected $table = "room";
+    public $timestamps = false;
     use HasFactory;
 
     public function reservations()
     {
         return $this->hasMany(Reservation::class, "room_id", "id");
+    }
+
+    public function type()
+    {
+        return $this->hasOne(RoomType::class, 'id', 'type_id');
     }
 }
