@@ -28,10 +28,6 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if (empty($email) || empty($password)) {
-            return redirect()->back()->with('error', 'Please provide both email and password');
-        }
-
         if ($this->authService->attemptLogin($email, $password)) {
             return redirect()->route('reservation.dashboard');
         } else {

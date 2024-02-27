@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Services\CustomerService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class CustomerController extends Controller
 {
@@ -17,8 +18,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $customers = $this->customerService->getAll();
-        return view('customer.index', ['customers' => $customers]);
+        return view('customer.index');
     }
 
     public function new()
@@ -76,4 +76,20 @@ class CustomerController extends Controller
         return response()->json($customers);
     }
 
+    public function filter(Request $request)
+    {
+        $customers = Customer::where('active', 1);
+
+        return DataTables::of($customers)
+            ->addColumn('actions', function ($customer) {
+                return '<a href="' . route('customer.edit', ['customer' => $customer]) . '" class="btn btn-success">Edit</a>
+                    <form action="' . route('customer.delete', $customer->id) . '" method="POST" style="display: inline;">
+                        ' . csrf_field() . '
+                        ' . method_field('PUT') . '
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>';
+            })
+            ->rawColumns(['actions'])
+            ->toJson();
+    }
 }

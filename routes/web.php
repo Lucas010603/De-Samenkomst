@@ -11,7 +11,6 @@ use App\Http\Controllers\RoomController;
 Route::get('/', [AuthController::class, 'index'])->name("login");
 Route::post('/sign-out', [AuthController::class, 'signOut'])->name("sign-out");
 
-
 // non auth API routes
 Route::prefix('api')->group(function () {
     Route::post('/login', [AuthController::class, 'attemptLogin'])->name("attemptLogin");
@@ -31,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
         Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name("customer.edit");
         Route::get('/customer/{status}', [CustomerController::class, 'status'])->name("customer.status");
+        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
+        Route::get('/filter', [CustomerController::class, 'filter'])->name('customer.filter');
     });
 
     Route::prefix('room')->group(function () {
