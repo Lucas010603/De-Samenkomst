@@ -1,8 +1,18 @@
 @extends("components.main")
+@section('content')
+    <h2>Reserveringen van vandaag</h2>
+    @include('reservation.component-table', ['id' => "almostExpiredTable", 'reservations' => $reservations])
+    <h2>Bijna verlopen huurcontracten</h2>
+    @include('reservation.component-table', ['id' => "reservationTable",'reservations' => $almostExpired])
+    <script>
+        function deleteReservation(id){
+            axios.put(`/api/reservation/delete/${id}`)
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
 
-@section("content")
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad culpa cumque eos et fuga fugiat impedit incidunt, laboriosam libero nisi nobis, non perferendis reiciendis suscipit temporibus unde. A ab alias autem beatae commodi consectetur corporis cupiditate deleniti distinctio dolorem doloribus earum enim eos est ex fugiat fugit id inventore itaque iusto, laboriosam laudantium maxime nemo obcaecati officia omnis pariatur perspiciatis quisquam repellat temporibus unde velit vitae voluptatum. Culpa in ipsa optio perferendis quidem? A ab accusantium aspernatur autem consequuntur cum cumque dicta eligendi enim fugit harum iste itaque iure minus, nam neque officiis optio repellat sit soluta veniam voluptatibus?
-@endsection
-
-@section('scripts')
+                });
+        }
+    </script>
 @endsection

@@ -11,7 +11,7 @@ class CustomerService
     public function getAllCustomers()
     {
         // Retrieve all customers from the database
-        return Customer::all();
+        return Customer::paginate(10);
     }
 
     public function createCustomer($data)

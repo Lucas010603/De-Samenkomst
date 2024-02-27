@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    private $reservationService;
+    private ReservationService $reservationService;
 
     public function __construct()
     {
@@ -25,7 +25,9 @@ class ReservationController extends Controller
 
     public function dashboard()
     {
-        return view("reservation.dashboard");
+        $reservations = $this->reservationService->getToday();
+        $almostExpired = $this->reservationService->getAlmostExpired();
+        return view("reservation.dashboard", compact('reservations', 'almostExpired'));
     }
 
     public function new()

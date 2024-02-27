@@ -30,12 +30,20 @@
             </tr>
         @endforeach
         </tbody>
+        {{ $customers->links('pagination::bootstrap-5') }}
+
     </table>
+{{--    {{ $customers->links() }}--}}
 
     <script>
         // @ToDo @Stef: change language to dutch (see resources/examples/data-dutch-lang-settings for example)
         $(document).ready(function() {
-            $('#customerTable').DataTable();
+            $('#customerTable').DataTable({
+                paging: false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
+                }
+            });
         });
     </script>
 @endsection

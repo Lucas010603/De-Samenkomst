@@ -196,3 +196,6 @@ nav li#user-info > span:after {
 .navItem{
     text-decoration: none; color: inherit;
 }
+.pagination{
+    margin-top: 65%;
+}
