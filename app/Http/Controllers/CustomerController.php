@@ -55,9 +55,9 @@ class CustomerController extends Controller
         return redirect()->route('customer');
     }
 
-    public function delete($id)
+    public function toggleStatus($id)
     {
-        return response()->json($this->customerService->delete($id));
+        return response()->json($this->customerService->toggleStatus($id));
     }
 
     public function status($status)
@@ -78,16 +78,21 @@ class CustomerController extends Controller
 
     public function filter(Request $request)
     {
-        $customers = Customer::where('active', 1);
+        $filter = $request->input('filter');
+        $customers = Customer::query();
+        if($filter == "active"){
+            $customers->where('active', 1);
+        }
+        if($filter == "deleted"){
+            $customers->where('active', 0);
+        }
 
         return DataTables::of($customers)
             ->addColumn('actions', function ($customer) {
-                return '<a href="' . route('customer.edit', ['customer' => $customer]) . '" class="btn btn-success">Edit</a>
-                    <form action="' . route('customer.delete', $customer->id) . '" method="POST" style="display: inline;">
-                        ' . csrf_field() . '
-                        ' . method_field('PUT') . '
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>';
+                $btnColor = $customer->active ? "btn-danger" : "btn-primary";
+                $text = $customer->active ? "verwijderen" : "herstellen";
+                return '<a href="' . route('customer.edit', ['id' => $customer->id]) . '" class="btn btn-success">Edit</a>
+                    <a class="btn ' . $btnColor . '" onclick="toggleStatus(' . $customer->id . ')">' . $text . '</a>';
             })
             ->rawColumns(['actions'])
             ->toJson();

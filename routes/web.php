@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('api')->group(function () {
         Route::prefix('customer')->group(function () {
             Route::post('/store', [CustomerController::class, 'store'])->name("api.customer.store");
-            Route::put('/delete/{id}', [CustomerController::class, 'delete'])->name("api.customer.delete");
+            Route::put('/toggle/status/{id}', [CustomerController::class, 'toggleStatus'])->name("api.customer.delete");
             Route::post('/update/{id}', [CustomerController::class, 'update'])->name("api.customer.update");
         });
 
@@ -59,14 +59,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/new', [RoomController::class, 'new'])->name("room.new");
             Route::get('/edit/{id}', [RoomController::class, 'edit'])->name("room.edit");
         });
-        // Authenticated Admin API routes
-        Route::prefix('api')->group(function () {
-            Route::prefix('room')->group(function () {
-                Route::post('/store', [RoomController::class, 'store'])->name("api.room.store");
-                Route::post('/update/{id}', [RoomController::class, 'update'])->name("api.room.update");
-                Route::put('/delete/{id}', [RoomController::class, 'delete'])->name("api.room.delete");
-            });
-        });
 
         Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name("user");
@@ -74,10 +66,19 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name("user.edit");
         });
 
-        Route::prefix('user')->group(function () {
-            Route::post('/store', [UserController::class, 'store'])->name("api.user.store");
-            Route::put('/delete/{id}', [UserController::class, 'delete'])->name("api.user.delete");
-            Route::post('/update/{id}', [UserController::class, 'update'])->name("api.user.update");
+        // Authenticated Admin API routes
+        Route::prefix('api')->group(function () {
+            Route::prefix('room')->group(function () {
+                Route::post('/store', [RoomController::class, 'store'])->name("api.room.store");
+                Route::post('/update/{id}', [RoomController::class, 'update'])->name("api.room.update");
+                Route::put('/delete/{id}', [RoomController::class, 'delete'])->name("api.room.delete");
+            });
+
+            Route::prefix('user')->group(function () {
+                Route::post('/store', [UserController::class, 'store'])->name("api.user.store");
+                Route::put('/delete/{id}', [UserController::class, 'delete'])->name("api.user.delete");
+                Route::post('/update/{id}', [UserController::class, 'update'])->name("api.user.update");
+            });
         });
     });
 });

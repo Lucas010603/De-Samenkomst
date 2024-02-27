@@ -24,14 +24,13 @@ class CustomerService
 
     }
 
-    public function delete($id)
+    public function toggleStatus($id)
     {
         $customer = Customer::find($id);
-        if ($customer && $customer->active == 1) {
-            $customer->update(['active' => 0]);
-            return true;
-        } else {
-            return false;
+        if($customer->active){
+            return $customer->update(['active' => 0]);
+        }else{
+            return $customer->update(['active' => 1]);
         }
     }
 

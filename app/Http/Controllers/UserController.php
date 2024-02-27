@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Services\userService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
 {
-    protected userService $userService;
+    protected UserService $userService;
 
     public function __construct()
     {
-        $this->userService = new userService();
+        $this->userService = new UserService();
     }
 
     public function index()

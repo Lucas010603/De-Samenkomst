@@ -7,7 +7,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use App\Models\UserRole;
 
-class userService
+class UserService
 {
     public function getAll()
     {
