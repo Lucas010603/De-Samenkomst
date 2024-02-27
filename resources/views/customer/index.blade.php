@@ -9,7 +9,6 @@
             <th scope="col">Email</th>
             <th scope="col">Telefoonnummer</th>
             <th scope="col">Actie</th>
-            <th scope="col">Actie</th>
         </tr>
         </thead>
         <tbody>
@@ -21,9 +20,6 @@
                 <td>{{ $customer->phone }}</td>
                 <td>
                     <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-success">Bijwerken</a>
-
-                </td>
-                <td>
                     <a class="btn btn-danger" onclick="deleteCustomer({{$customer->id}})">Verwijderen</a>
                 </td>
             </tr>

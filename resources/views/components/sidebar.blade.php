@@ -50,10 +50,6 @@
                 <span>Kamers toevoegen</span>
             </li>
             </a>
-            <li class="menu-item">
-                <i class='bx bxs-user-detail'></i>
-                <span>Medewerkers</span>
-            </li>
             <a href="{{ route('user') }}" class="navItem">
                 <li class="menu-item">
                     <i class='bx bxs-user-detail'></i>
