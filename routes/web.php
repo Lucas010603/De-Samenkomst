@@ -33,12 +33,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/customer/{status}', [CustomerController::class, 'status'])->name("customer.status");
     });
 
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name("user");
-        Route::get('/new', [UserController::class, 'new'])->name("user.new");
-        Route::get('/edit/{id}', [UserController::class, 'edit'])->name("user.edit");
-    });
-
     Route::prefix('room')->group(function () {
         Route::get('/', [RoomController::class, 'index'])->name("room");
     });
@@ -56,12 +50,6 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/update/{id}', [ReservationController::class, 'update'])->name("api.reservation.update");
             Route::put('/delete/{id}', [ReservationController::class, 'delete'])->name("api.reservation.delete");
         });
-
-        Route::prefix('user')->group(function () {
-            Route::post('/store', [UserController::class, 'store'])->name("api.user.store");
-            Route::put('/delete/{id}', [UserController::class, 'delete'])->name("api.user.delete");
-            Route::post('/update/{id}', [UserController::class, 'update'])->name("api.user.update");
-        });
     });
 
     //authenticated admin routes
@@ -77,6 +65,18 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('/update/{id}', [RoomController::class, 'update'])->name("api.room.update");
                 Route::put('/delete/{id}', [RoomController::class, 'delete'])->name("api.room.delete");
             });
+        });
+
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name("user");
+            Route::get('/new', [UserController::class, 'new'])->name("user.new");
+            Route::get('/edit/{id}', [UserController::class, 'edit'])->name("user.edit");
+        });
+
+        Route::prefix('user')->group(function () {
+            Route::post('/store', [UserController::class, 'store'])->name("api.user.store");
+            Route::put('/delete/{id}', [UserController::class, 'delete'])->name("api.user.delete");
+            Route::post('/update/{id}', [UserController::class, 'update'])->name("api.user.update");
         });
     });
 });
