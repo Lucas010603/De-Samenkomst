@@ -37,17 +37,19 @@
                 <span>Klant toevoegen</span>
             </li>
         </a>
-        <a href="{{ route('rooms') }}" class="navItem">
+        <a href="{{ route('room') }}" class="navItem">
         <li class="menu-item">
             <i class='bx bxs-bed'></i>
             <span>Kamers</span>
         </li>
         </a>
         @if(auth()->user()->role->name == "admin")
+        <a href="{{ route('room.new') }}" class="navItem">
         <li class="menu-item">
             <i class='bx bxs-add-to-queue'></i>
             <span>Kamers toevoegen</span>
         </li>
+        </a>
             <li class="menu-item">
                 <i class='bx bxs-user-detail'></i>
                 <span>Medewerkers</span>

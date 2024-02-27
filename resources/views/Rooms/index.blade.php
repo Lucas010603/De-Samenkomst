@@ -1,7 +1,7 @@
 @extends("components.main")
 
 @section("content")
-<table class="table">
+<table id="roomTable" class="table">
     <thead>
     <tr>
         <th scope="col">Kamer Nummer</th>
@@ -9,6 +9,7 @@
         <th scope="col">Maximale Capaciteit</th>
         <th scope="col">Tafelindeling</th>
         <th scope="col">Aantal Monitoren</th>
+        <th scope="col">Acties</th>
     </tr>
     </thead>
     <tbody>
@@ -21,21 +22,31 @@
             <td>{{ $room->monitor }}</td>
             <td></td>
             <td>
-
-{{--                TODO: voeg edit en delete button toe--}}
-{{--                <a href="{{ route('customer.edit', ['customer' => $customer]) }}" class="btn btn-success">Edit</a>--}}
-
-{{--                <form action="{{ route('customer.delete', $customer->id) }}" method="POST" style="display: inline;">--}}
-{{--                    @csrf--}}
-{{--                    @method('DELETE')--}}
-{{--                    <button type="submit" class="btn btn-danger">Delete</button>--}}
-{{--                </form>--}}
+                <a href="{{ route('room.edit', ['id' => $room->id]) }}" class="btn btn-success">Bijwerken</a>
+                <a class="btn btn-danger" onclick="deleteReservation({{$room->id}})">Verwijderen</a>
             </td>
         </tr>
     @endforeach
     </tbody>
 </table>
-@endsection
 
-@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('#roomTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
+            }
+        });
+    });
+
+    function deleteRoom(id){
+        axios.put(`/api/reservation/delete/${id}`)
+            .then(response => {
+                window.location.reload();
+            })
+            .catch(error => {
+
+            });
+    }
+</script>
 @endsection

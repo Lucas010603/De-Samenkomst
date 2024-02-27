@@ -16,6 +16,12 @@ class RoomService
         return Room::where('active', 1)->get();
     }
 
+    public function update($id, $data)
+    {
+        $room = Room::find($id);
+        return $room->update($data);
+    }
+
     public function createRoom($data)
     {
         return Room::insert($data);

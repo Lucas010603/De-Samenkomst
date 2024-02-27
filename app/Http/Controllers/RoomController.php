@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomType;
 use App\Services\RoomService;
 use Illuminate\Http\Request;
 
@@ -24,11 +25,45 @@ class RoomController extends Controller
     public function new()
     {
         $rooms = $this->roomService->getAllTypes();
-        return (view('rooms.new', compact('rooms')));
+        $roomTypes = RoomType::where('active', 1)->get();
+        return (view('rooms.new', compact('rooms', 'roomTypes')));
+    }
+
+    public function edit($id)
+    {
+        $rooms = Room::where(['active' => 1, 'id' => $id])->first();
+        //$roomTypes = Room::where('active', 1)->with('type')->get();
+        $roomTypes = RoomType::where('active', 1)->get();
+        return view("Rooms.edit", compact('rooms', 'roomTypes'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = $request->validate(
+            [
+                'number' => 'required|numeric',
+                'name' => 'required',
+                'max_capacity' => 'required|date',
+                'type_id' => 'required|date',
+                'table_configuration' => 'required',
+                'monitor' => 'required'
+            ]
+        );
+        $this->roomService->update($id, $data);
+        return redirect()->route('room');
     }
 
     public function store(Request $request){
-        $data = $request->validate(['company' => 'required', 'email' => 'required|email', 'phone' => 'required|numeric']);
+        $data = $request->validate(
+            [
+             'number' => 'required|numeric',
+             'name' => 'required',
+             'max_capacity' => 'required',
+             'type_id' => 'required',
+             'table_configuration' => 'required',
+             'monitor' => 'required'
+            ]
+        );
         $this->roomService->createRoom($data);
         return redirect()->route('room');
     }
