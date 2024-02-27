@@ -34,7 +34,7 @@
     </table>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#reservationTable').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
@@ -42,7 +42,7 @@
             });
         });
 
-        function deleteReservation(id){
+        function deleteReservation(id) {
             axios.put(`/api/reservation/delete/${id}`)
                 .then(response => {
                     window.location.reload();

@@ -2,12 +2,16 @@
 
 @section('content')
     <h1>Klant Bewerken</h1>
-{{--    ToDo @Stef: slightly better to use route name with (route()) instead of url()--}}
-    <form method="post" action="{{ url('/api/customer/update/' . $customer->id) }}
-    ">
+    <form method="post" action="{{ route('api.customer.update', ['id' => $customer->id]) }}" data-handle-errors>
         @csrf
-        @method('put')
-
+        <div class="mb-3">
+            <label for="name" class="form-label">Naam</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                   value="{{$customer->name}}">
+            @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="mb-3">
             <label for="company" class="form-label">Bedrijfsnaam</label>
             <input type="text" class="form-control" id="company" name="company" placeholder="Bedrijfsnaam"

@@ -1,20 +1,15 @@
 @extends("components.main")
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('/css/datatable.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-
-
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-    <table id="customerTable" class="table">
+    <table id="userTable" class="table">
         <thead>
+
         <tr>
             <th scope="col">Email</th>
-            <th scope="col">Name</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Actie</th>
+
         </tr>
         </thead>
         <tbody>
@@ -22,15 +17,11 @@
             <tr>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->name }}</td>
-                <td>{{ $user-> }}</td>
-                <td>
-                    <a href="{{ route('customer.edit', ['customer' => $customer]) }}" class="btn btn-success">Edit</a>
+                <td>{{ $user->role->name }}</td>
 
-                    <form action="{{ route('customer.delete', $customer->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('put')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                <td>
+                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success">Bijwerken</a>
+                    <a class="btn btn-danger" onclick="deleteUser({{$user->id}})">Verwijderen</a>
                 </td>
             </tr>
         @endforeach
@@ -39,7 +30,21 @@
 
     <script>
         $(document).ready(function () {
-            $('#customerTable').DataTable();
+            $('#userTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
+                }
+            });
         });
+
+        function deleteUser(id) {
+            axios.put(`/api/user/delete/${id}`)
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
     </script>
 @endsection

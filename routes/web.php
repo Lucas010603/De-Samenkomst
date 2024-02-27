@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
 
 // non auth routes
 Route::get('/', [AuthController::class, 'index'])->name("login");
@@ -27,31 +28,34 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name("customer");
         Route::get('/new', [CustomerController::class, 'new'])->name("customer.new");
-        Route::get('/edit/{customer}', [CustomerController::class, 'edit'])->name("customer.edit"); //ToDo @Stef: use customer id instead of the object
-        Route::get('/delete', [CustomerController::class, 'delete'])->name("customer.delete");
+        Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name("customer.edit");
+        Route::get('/customer/{status}', [CustomerController::class, 'status'])->name("customer.status");
     });
 
     Route::prefix('user')->group(function () {
-        Route::get('/', [CustomerController::class, 'index'])->name("user");
-        Route::get('/new', [CustomerController::class, 'new'])->name("user.new");
-        Route::get('/edit/{user}', [CustomerController::class, 'edit'])->name("user.edit");
-        Route::get('/delete', [CustomerController::class, 'delete'])->name("user.delete");
+        Route::get('/', [UserController::class, 'index'])->name("user");
+        Route::get('/new', [UserController::class, 'new'])->name("user.new");
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name("user.edit");
     });
 
     //authenticated API routes:
     Route::prefix('api')->group(function () {
-
-        // ToDo @Stef: route names inside api context should have prefix "api."
         Route::prefix('customer')->group(function () {
-            Route::post('/store', [CustomerController::class, 'store'])->name("customer.store");
-            Route::put('/delete/{customer}', [CustomerController::class, 'delete'])->name("customer.delete");
-            // ToDo @Stef: route for update missing?
+            Route::post('/store', [CustomerController::class, 'store'])->name("api.customer.store");
+            Route::put('/delete/{id}', [CustomerController::class, 'delete'])->name("api.customer.delete");
+            Route::post('/update/{id}', [CustomerController::class, 'update'])->name("api.customer.update");
         });
 
         Route::prefix('reservation')->group(function () {
             Route::post('/store', [ReservationController::class, 'store'])->name("api.reservation.store");
             Route::post('/update/{id}', [ReservationController::class, 'update'])->name("api.reservation.update");
             Route::put('/delete/{id}', [ReservationController::class, 'delete'])->name("api.reservation.delete");
+        });
+
+        Route::prefix('user')->group(function () {
+            Route::post('/store', [UserController::class, 'store'])->name("api.user.store");
+            Route::put('/delete/{id}', [UserController::class, 'delete'])->name("api.user.delete");
+            Route::post('/update/{id}', [UserController::class, 'update'])->name("api.user.update");
         });
     });
 

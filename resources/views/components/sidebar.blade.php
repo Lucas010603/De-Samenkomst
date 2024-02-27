@@ -9,7 +9,7 @@
         <a href="{{ route('reservation.dashboard') }}" class="navItem">
             <li class="menu-item">
                 <i class='bx bxs-dashboard'></i>
-                    <span>Dashboard</span>
+                <span>Dashboard</span>
             </li>
         </a>
 
@@ -46,10 +46,20 @@
             <span>Kamers toevoegen</span>
         </li>
         @if(auth()->user()->role->name == "admin")
-            <li class="menu-item">
-                <i class='bx bxs-user-detail'></i>
-                <span>Medewerkers</span>
-            </li>
+            <a href="{{ route('user') }}" class="navItem">
+                <li class="menu-item">
+                    <i class='bx bxs-user-detail'></i>
+                    <span>Medewerkers</span>
+                </li>
+            </a>
+        @endif
+        @if(auth()->user()->role->name == "admin")
+            <a href="{{ route('user.new') }}" class="navItem">
+                <li class="menu-item">
+                    <i class='bx bxs-user-detail'></i>
+                    <span>Medewerkers toevoegen</span>
+                </li>
+            </a>
         @endif
         <li class="menu-item" onclick="signOut()">
             <i class="fas fa-sign-out-alt"></i>

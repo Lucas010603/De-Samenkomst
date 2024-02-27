@@ -2,29 +2,41 @@
 
 namespace App\Services;
 
+use App\Models\Customer;
+use App\Models\Reservation;
 use App\Models\User;
+use App\Models\UserRole;
 
 class userService
 {
-    public function getAllUsers()
+    public function getAll()
     {
-
-        return User::all();
+        return User::where('active', 1)->get();
     }
 
-    public function createUser($data)
+    public function getAllRoles()
+    {
+        return UserRole::where('active',1)->get();
+    }
+
+    public function create($data)
     {
         return User::insert($data);
     }
 
-    public function updateUser($id, $data)
+    public function update($id, $data)
     {
         $user = User::find($id);
-        $user->update($data);
-        return $user;
+      return  $user->update($data);
+
     }
 
-    public function deleteUser($id)
+    public function store($data)
+    {
+        return User::insert($data);
+    }
+
+    public function delete($id)
     {
         $user = User::find($id);
         if ($user && $user->active == 1) {
