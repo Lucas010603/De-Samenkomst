@@ -36,7 +36,8 @@ class RoomController extends Controller
         return view("Rooms.edit", compact('rooms', 'roomTypes'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->validate(
             [
                 'number' => 'required|numeric',

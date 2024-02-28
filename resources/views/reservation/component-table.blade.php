@@ -22,7 +22,8 @@
             <td>{{ $reservation->start->format("d-m-Y H:i")}}</td>
             <td>{{ $reservation->end->format("d-m-Y H:i")}}</td>
             <td>
-                <a href="{{ route('reservation.edit', ['id' => $reservation->id, 'from' => request()->route()->getName() ])}}" class="btn btn-success">Bijwerken</a>
+                <a href="{{ route('reservation.edit', ['id' => $reservation->id, 'from' => request()->route()->getName() ])}}"
+                   class="btn btn-success">Bijwerken</a>
                 <a class="btn btn-danger" onclick="deleteReservation({{$reservation->id}})">Verwijderen</a>
             </td>
         </tr>
@@ -30,7 +31,7 @@
     </tbody>
 </table>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#{{$id}}').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"

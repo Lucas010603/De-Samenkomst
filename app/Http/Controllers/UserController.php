@@ -32,7 +32,6 @@ class UserController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -51,7 +50,6 @@ class UserController extends Controller
         $this->userService->store($data);
         return redirect()->route('user');
     }
-
 
 
     public function edit($id)

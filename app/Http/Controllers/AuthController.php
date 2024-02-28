@@ -31,9 +31,10 @@ class AuthController extends Controller
         if ($this->authService->attemptLogin($email, $password)) {
             return redirect()->route('reservation.dashboard');
         } else {
-            return redirect()->back()->with('error', 'Invalid credentials');
+            return redirect()->back()->withErrors(['login_error' => 'E-mail of wachtwoord is onjuist.']);
         }
     }
+
 
     public function signOut()
     {

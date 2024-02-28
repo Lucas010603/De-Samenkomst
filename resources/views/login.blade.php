@@ -17,17 +17,27 @@
 
 <body class="text-center">
 
-<form class="form-signin" method="POST" action="{{ url('/api/login') }}">
+<form class="form-signin" method="POST" action="{{ url('/api/login') }}" data-handle-errors>
     @csrf
     <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
          height="72">
     <h1 class="h3 mb-3 font-weight-normal">Inloggen</h1>
     <label for="inputEmail" class="sr-only">E-mailadres</label>
-    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="E-mailadres" required autofocus>
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="E-mailadres"
+           data-error-message="vul een geldig e-mail in" required autofocus>
     <label for="inputPassword" class="sr-only">wachtwoord</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="wachtwoord" required>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="wachtwoord"
+           data-error-message="vul een geldig wachtwoord in" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
+    <div class="mt-3 mb-5">@if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first('login_error') }}
+            </div>
+        @endif</div>
     <p class="mt-5 mb-3 text-muted invisible">.</p>
+
 </form>
+
+
 </body>
 </html>

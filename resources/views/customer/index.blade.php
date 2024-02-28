@@ -24,7 +24,7 @@
 
     </table>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#customerTable').DataTable({
                 "processing": false,
                 "serverSide": true,
@@ -36,23 +36,23 @@
                     }
                 },
                 "columns": [
-                    { "data": "name" },
-                    { "data": "company" },
-                    { "data": "email" },
-                    { "data": "phone" },
-                    { "data": "actions", "orderable": false, "searchable": false }
+                    {"data": "name"},
+                    {"data": "company"},
+                    {"data": "email"},
+                    {"data": "phone"},
+                    {"data": "actions", "orderable": false, "searchable": false}
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Dutch.json"
                 }
             });
 
-            $('#userStatus').on('change', function() {
+            $('#userStatus').on('change', function () {
                 $('#customerTable').DataTable().ajax.reload();
             });
         });
 
-        function toggleStatus(id){
+        function toggleStatus(id) {
             axios.put(`/api/customer/toggle/status/${id}`)
                 .then(response => {
                     window.location.reload();

@@ -64,13 +64,10 @@ class CustomerController extends Controller
     {
         if ($status === 'active') {
             $customers = Customer::where('active', 1)->get();
-
         } elseif ($status === 'deleted') {
             $customers = Customer::where('active', 0)->get();
-
         } else {
             $customers = Customer::all();
-
         }
 
         return response()->json($customers);
@@ -80,10 +77,10 @@ class CustomerController extends Controller
     {
         $filter = $request->input('filter');
         $customers = Customer::query();
-        if($filter == "active"){
+        if ($filter == "active") {
             $customers->where('active', 1);
         }
-        if($filter == "deleted"){
+        if ($filter == "deleted") {
             $customers->where('active', 0);
         }
 

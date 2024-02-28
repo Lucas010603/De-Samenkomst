@@ -7,19 +7,23 @@
         @method('post')
         <div class="mb-3">
             <label class="form-label">Kamernummer</label>
-            <input type="text" class="form-control" id="company" name="number" placeholder="123" value="{{$rooms->number}}" data-error-message="Geef een geldig kamer nummer op">
+            <input type="text" class="form-control" id="company" name="number" placeholder="123"
+                   value="{{$rooms->number}}" data-error-message="Geef een geldig kamer nummer op">
         </div>
         <div class="mb-3">
             <label class="form-label">Kamernaam</label>
-            <input type="text" class="form-control" id="email" name="name" placeholder="Kamernaam" value="{{$rooms->name}}" data-error-message="Geef een geldige kamernaam op">
+            <input type="text" class="form-control" id="email" name="name" placeholder="Kamernaam"
+                   value="{{$rooms->name}}" data-error-message="Geef een geldige kamernaam op">
         </div>
         <div class="mb-3">
             <label class="form-label">Maximale Capaciteit</label>
-            <input type="text" class="form-control" id="phone" name="max_capacity" placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->max_capacity}}" data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+            <input type="text" class="form-control" id="phone" name="max_capacity"
+                   placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->max_capacity}}"
+                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
         <label class="form-label">Kamer Type</label>
         <select name="type_id" id="room" class="form-select" data-error-message="Selecteer een geldig type kamer">
-            <option  selected disabled value="">Kamer Type</option>
+            <option selected disabled value="">Kamer Type</option>
             @foreach($roomTypes as $roomType)
                 <option value="{{ $roomType->id }}" {{ $rooms->type->id == $roomType->id ? 'selected' : '' }}>
                     {{ $roomType->name }}
@@ -29,11 +33,15 @@
         <br>
         <div class="mb-3">
             <label class="form-label">Tafel Indeling</label>
-            <input type="text" class="form-control" id="phone" name="table_configuration" placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->table_configuration}}" data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+            <input type="text" class="form-control" id="phone" name="table_configuration"
+                   placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->table_configuration}}"
+                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
         <div class="mb-3">
             <label class="form-label">Aantal Monitoren</label>
-            <input type="text" class="form-control" id="phone" name="monitor" placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->monitor}}" data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+            <input type="text" class="form-control" id="phone" name="monitor"
+                   placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->monitor}}"
+                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" value="Opslaan">
