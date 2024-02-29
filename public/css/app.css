@@ -109,11 +109,10 @@ nav li#user-info > span:after {
     border-radius: 50%;
 }
 
-.red-header{
+.red-header {
     height: 60px;
     background-color: #D2691E;
 }
-
 
 
 .content-wrapper {
@@ -136,7 +135,7 @@ nav li#user-info > span:after {
     transition: all 300ms;
 }
 
-.vertical-menu-wrapper{
+.vertical-menu-wrapper {
     margin-top: 60px;
     background-color: #2E8B57;
 }
@@ -182,20 +181,22 @@ nav li#user-info > span:after {
     padding: 30px;
 }
 
-.logo{
+.logo {
     font-family: fantasy;
     font-size: 200%;
     padding: 0.5%;
     color: #A52A2A;
 }
 
-.menu-item{
+.menu-item {
     font-size: 13pt;
 }
 
-.navItem{
-    text-decoration: none; color: inherit;
+.navItem {
+    text-decoration: none;
+    color: inherit;
 }
-.pagination{
+
+.pagination {
     margin-top: 65%;
 }

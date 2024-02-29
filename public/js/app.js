@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const openMenuBtn = document.querySelector('.open-menu-btn');
     const body = document.body;
     const breakpoint = 768;
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateMenuState();
 
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         updateMenuState();
 
         if (window.innerWidth <= breakpoint && !body.classList.contains('closed-menu')) {
@@ -27,19 +27,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // form validation
-$(document).ready(function() {
-    $('form[data-handle-errors]').on('submit', function(e) {
+$(document).ready(function () {
+    $('form[data-handle-errors]').on('submit', function (e) {
         $("#form-submit-fail").remove();
         let form = $(this);
         form.find('[data-error]').remove();
-        let fieldsWithError = form.find('[data-error-message]').filter(function() {
+        let fieldsWithError = form.find('[data-error-message]').filter(function () {
             let value = $(this).val();
             return !value || value.trim() === '';
         });
 
         if (fieldsWithError.length > 0) {
             e.preventDefault();
-            fieldsWithError.each(function() {
+            fieldsWithError.each(function () {
                 let errorMessage = $(this).data('error-message');
                 $(this).after('<div class="error-message" data-error style="color: red;">' + errorMessage + '</div>');
             });

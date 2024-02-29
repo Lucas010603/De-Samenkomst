@@ -5,7 +5,7 @@
     <h2>Bijna verlopen huurcontracten</h2>
     @include('reservation.component-table', ['id' => "reservationTable",'reservations' => $almostExpired])
     <script>
-        function deleteReservation(id){
+        function deleteReservation(id) {
             axios.put(`/api/reservation/delete/${id}`)
                 .then(response => {
                     window.location.reload();
