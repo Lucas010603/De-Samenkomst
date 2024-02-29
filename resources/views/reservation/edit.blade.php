@@ -15,7 +15,7 @@
                     data-error-message="Selecteer een geldige klant of bedrijf">
                 <option selected disabled value="">Klant / Bedrijf</option>
                 @foreach($customers as $customer)
-                    <option {{$customer->id == $reservation->customer->id ? "selected" : ""}} value="{{ $customer->id }}">{{ $customer->name }} {{ $customer->company ?? '' }}</option>
+                    <option {{$customer->id == $reservation->customer->id ? "selected" : ""}} value="{{ $customer->id }}">{{ $customer->company ?? $customer->name ?? "n.v.t." }} </option>
                 @endforeach
             </select>
         </div>
@@ -32,17 +32,19 @@
         </div>
         <div class="mb-3">
             <label for="start" class="form-label">Van</label>
-            <input type="datetime-local" class="form-control" id="start" name="start"
+            <input type="datetime-local" class="form-control" id="start" disabled
                    data-error-message="vul een geldige start datum en tijd in"
                    value="{{ \Carbon\Carbon::parse($reservation->start)->format('Y-m-d\TH:i') }}">
         </div>
         <div class="mb-3">
             <label for="end" class="form-label">Tot</label>
-            <input type="datetime-local" class="form-control" id="end" name="end"
+            <input type="datetime-local" class="form-control" id="end"
+                   disabled
                    data-error-message="vul een geldige eind datum en tijd in"
                    value="{{ \Carbon\Carbon::parse($reservation->end)->format('Y-m-d\TH:i') }}">
         </div>
         <div class="mb-3">
+            <input type="button" onclick="extendReservation()" class="btn btn-primary" value="Verlengen">
             <input type="submit" class="btn btn-primary" value="Bijwerken">
         </div>
     </form>
@@ -51,9 +53,17 @@
             Klant bijwerken mislukt. probeer het nog eens.
         </div>
     @endif
-@endsection
-@section('scripts')
     <script>
+        let reservationId = @json($reservation->id)
 
+        function extendReservation() {
+            axios.put(`/api/reservation/extend/${reservationId}`)
+                .then(response => {
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
     </script>
 @endsection

@@ -30,14 +30,9 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="start" class="form-label">Van</label>
+            <label for="start" class="form-label">Start datum</label>
             <input type="datetime-local" class="form-control" id="start" name="start"
                    data-error-message="vul een geldige start datum in">
-        </div>
-        <div class="mb-3">
-            <label for="end" class="form-label">Tot</label>
-            <input type="datetime-local" class="form-control" id="end" name="end"
-                   data-error-message="vul een geldige eind datum in">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" value="Opslaan">
@@ -45,7 +40,7 @@
     </form>
     @if(count($errors))
         <div id="form-submit-fail" class="alert alert-danger" role="alert">
-            Klant aanmaken mislukt. probeer het nog eens.
+            Reservering aanmaken mislukt. probeer het nog eens.
         </div>
     @endif
 @endsection

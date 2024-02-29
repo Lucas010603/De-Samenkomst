@@ -91,7 +91,7 @@ class CustomerController extends Controller
             ->addColumn('actions', function ($customer) {
                 $btnColor = $customer->active ? "btn-danger" : "btn-primary";
                 $text = $customer->active ? "verwijderen" : "herstellen";
-                return '<a href="' . route('customer.edit', ['id' => $customer->id]) . '" class="btn btn-success">Edit</a>
+                return '<a href="' . route('customer.edit', ['id' => $customer->id]) . '" class="btn btn-success">Bijwerken</a>
                     <a class="btn ' . $btnColor . '" onclick="toggleStatus(' . $customer->id . ')">' . $text . '</a>';
             })
             ->rawColumns(['actions'])

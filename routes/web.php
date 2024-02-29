@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', [ReservationController::class, 'store'])->name("api.reservation.store");
             Route::post('/update/{id}', [ReservationController::class, 'update'])->name("api.reservation.update");
             Route::put('/delete/{id}', [ReservationController::class, 'delete'])->name("api.reservation.delete");
+            Route::put('/extend/{id}', [ReservationController::class, 'extend'])->name("api.reservation.extend");
         });
     });
 
