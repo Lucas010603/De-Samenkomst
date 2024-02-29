@@ -19,8 +19,7 @@
 
 <form class="form-signin" method="POST" action="{{ url('/api/login') }}" data-handle-errors>
     @csrf
-    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-         height="72">
+    <img class="mb-4" id="logo" src="{{ asset('images/De-Samenkomst-LOGO.png') }}" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Inloggen</h1>
     <label for="inputEmail" class="sr-only">E-mailadres</label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="E-mailadres"
@@ -35,9 +34,6 @@
             </div>
         @endif</div>
     <p class="mt-5 mb-3 text-muted invisible">.</p>
-
 </form>
-
-
 </body>
 </html>
