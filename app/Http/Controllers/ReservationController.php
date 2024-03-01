@@ -76,7 +76,8 @@ class ReservationController extends Controller
         return response()->json($this->reservationService->delete($id));
     }
 
-    public function extend($id){
+    public function extend($id)
+    {
         return $this->reservationService->extend($id);
     }
 }

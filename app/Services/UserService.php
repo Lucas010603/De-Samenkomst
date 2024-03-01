@@ -16,7 +16,7 @@ class UserService
 
     public function getAllRoles()
     {
-        return UserRole::where('active',1)->get();
+        return UserRole::where('active', 1)->get();
     }
 
     public function create($data)
@@ -27,8 +27,7 @@ class UserService
     public function update($id, $data)
     {
         $user = User::find($id);
-      return  $user->update($data);
-
+        return $user->update($data);
     }
 
     public function store($data)

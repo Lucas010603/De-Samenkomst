@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //authenticated admin routes
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:beheerder'])->group(function () {
         Route::prefix('room')->group(function () {
             Route::get('/new', [RoomController::class, 'new'])->name("room.new");
             Route::get('/edit/{id}', [RoomController::class, 'edit'])->name("room.edit");

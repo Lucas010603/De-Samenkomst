@@ -6,13 +6,8 @@ use App\Models\Room;
 
 class RoomService
 {
-    public function getAllRooms()
+    public function getAllTypes()
     {
-        // Retrieve all rooms from the database
-        return Room::all();
-    }
-
-    public function getAllTypes(){
         return Room::where('active', 1)->get();
     }
 

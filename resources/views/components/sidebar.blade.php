@@ -43,7 +43,7 @@
                 <span>Kamers</span>
             </li>
         </a>
-        @if(auth()->user()->role->name == "admin")
+        @if(auth()->user()->role->name == "beheerder")
             <a href="{{ route('room.new') }}" class="navItem">
                 <li class="menu-item">
                     <i class='bx bxs-add-to-queue'></i>

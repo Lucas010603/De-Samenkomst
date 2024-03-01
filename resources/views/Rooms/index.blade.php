@@ -9,7 +9,7 @@
             <th scope="col">Maximale Capaciteit</th>
             <th scope="col">Tafelindeling</th>
             <th scope="col">Monitoren</th>
-            @if(auth()->user()->role->name == "admin")
+            @if(auth()->user()->role->name == "beheerder")
                 <th scope="col">Acties</th>
             @endif
         </tr>
@@ -22,7 +22,7 @@
                 <td>{{ $room->max_capacity }}</td>
                 <td>{{ $room->table_configuration }}</td>
                 <td>{{ $room->monitor }}</td>
-                @if(auth()->user()->role->name == "admin")
+                @if(auth()->user()->role->name == "beheerder")
                     <td>
                         <a href="{{ route('room.edit', ['id' => $room->id]) }}" class="btn btn-success">Bijwerken</a>
                         <a class="btn btn-danger" onclick="deleteRoom({{$room->id}})">Verwijderen</a>

@@ -42,7 +42,7 @@ class RoomController extends Controller
             [
                 'number' => 'required|numeric',
                 'name' => 'required',
-                'max_capacity' => 'required',
+                'max_capacity' => 'required|numeric',
                 'type_id' => 'required',
                 'table_configuration' => 'required',
                 'monitor' => 'required'
@@ -58,7 +58,7 @@ class RoomController extends Controller
             [
                 'number' => 'required|numeric',
                 'name' => 'required',
-                'max_capacity' => 'required',
+                'max_capacity' => 'required|numeric',
                 'type_id' => 'required',
                 'table_configuration' => 'required',
                 'monitor' => 'required'

@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Maximale Capaciteit</label>
-            <input type="text" class="form-control" id="phone" name="max_capacity"
+            <input type="number" class="form-control" id="phone" name="max_capacity"
                    placeholder="Voor hoeveel personen is het kantoor"
                    data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
         </div>
@@ -32,14 +32,14 @@
         <div class="mb-3">
             <label class="form-label">Tafel Indeling</label>
             <input type="text" class="form-control" id="phone" name="table_configuration"
-                   placeholder="Voor hoeveel personen is het kantoor"
-                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+                   placeholder="Tafel Indeling"
+                   data-error-message="Kies een tafel Indeling.">
         </div>
         <div class="mb-3">
-            <label class="form-label">Aantal Monitoren</label>
+            <label class="form-label">Monitoren</label>
             <input type="text" class="form-control" id="phone" name="monitor"
-                   placeholder="Voor hoeveel personen is het kantoor"
-                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+                   placeholder="Monitoren"
+                   data-error-message="Specificeer monitoren.">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" value="Opslaan">

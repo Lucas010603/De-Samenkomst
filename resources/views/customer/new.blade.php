@@ -8,14 +8,12 @@
 
         <div class="mb-3">
             <label for="Name" class="form-label">Naam</label>
-            <input type="text" class="form-control" id="Name" name="Name" placeholder="Naam"
-                   data-error-message="Vul een Naam in">
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Naam">
 
         </div>
         <div class="mb-3">
             <label for="company" class="form-label">Bedrijfsnaam</label>
-            <input type="text" class="form-control" id="company" name="company" placeholder="Bedrijfsnaam"
-                   data-error-message="Vul een Bedrijfsnaam in">
+            <input type="text" class="form-control" id="company" name="company" placeholder="Bedrijfsnaam">
 
         </div>
         <div class="mb-3">

@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate(['company' => 'nullable', 'email' => 'required|email', 'phone' => 'required|numeric']
+        $data = $request->validate(['company' => 'nullable', 'email' => 'required|email', 'phone' => 'required']
         );
         $this->customerService->create($data);
         return redirect()->route('customer');
@@ -44,8 +44,6 @@ class CustomerController extends Controller
     public function update($id, Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'company' => 'nullable',
             'email' => 'required|email',
             'phone' => 'required|numeric'
         ]);

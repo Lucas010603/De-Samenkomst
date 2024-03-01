@@ -15,16 +15,6 @@
     background-color: #e9ecef;
 }
 
-.btn.btn-success {
-    width: 75px;
-    height: 40px;
-}
-
-.btn.btn-danger {
-    width: 75px;
-    height: 40px;
-}
-
 /* Responsive styles for screens up to 600px */
 @media only screen and (max-width: 600px) {
     /* Adjust styles for small screens */

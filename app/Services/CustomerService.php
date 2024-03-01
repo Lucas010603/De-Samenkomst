@@ -20,16 +20,15 @@ class CustomerService
     public function update($id, $data)
     {
         $customer = Customer::find($id);
-       return $customer->update($data);
-
+        return $customer->update($data);
     }
 
     public function toggleStatus($id)
     {
         $customer = Customer::find($id);
-        if($customer->active){
+        if ($customer->active) {
             return $customer->update(['active' => 0]);
-        }else{
+        } else {
             return $customer->update(['active' => 1]);
         }
     }

@@ -15,6 +15,6 @@ class AuthService
      */
     public function attemptLogin($email, $password)
     {
-        return Auth::attempt(['email' => $email, 'password' => $password,'active' => 1]);
+        return Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1]);
     }
 }

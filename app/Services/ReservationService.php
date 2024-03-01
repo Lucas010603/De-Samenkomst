@@ -65,7 +65,8 @@ class ReservationService
         return $reservation->update(["active" => 0]);
     }
 
-    public function extend($id){
+    public function extend($id)
+    {
         $reservation = Reservation::find($id);
         $rent_duration = $reservation->room->type->standard_rent_duration;
         $new_end_date = $reservation->end->addDays($rent_duration)->format('Y-m-d\TH:i');

@@ -34,14 +34,14 @@
         <div class="mb-3">
             <label class="form-label">Tafel Indeling</label>
             <input type="text" class="form-control" id="phone" name="table_configuration"
-                   placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->table_configuration}}"
-                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+                   placeholder="Tafel Indeling" value="{{$rooms->table_configuration}}"
+                   data-error-message="Kies een tafel indeling.">
         </div>
         <div class="mb-3">
-            <label class="form-label">Aantal Monitoren</label>
+            <label class="form-label">Monitoren</label>
             <input type="text" class="form-control" id="phone" name="monitor"
-                   placeholder="Voor hoeveel personen is het kantoor" value="{{$rooms->monitor}}"
-                   data-error-message="Specificeer het maximale aantal personen dat in de ruimte kan verblijven.">
+                   placeholder="Monitoren" value="{{$rooms->monitor}}"
+                   data-error-message="Kies Monitoren">
         </div>
         <div class="mb-3">
             <input type="submit" class="btn btn-primary" value="Opslaan">
