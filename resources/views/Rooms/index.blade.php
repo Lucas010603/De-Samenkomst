@@ -1,6 +1,7 @@
 @extends("components.main")
 
 @section("content")
+    <div class="overflow-auto">
     <table id="roomTable" class="table">
         <thead>
         <tr>
@@ -32,7 +33,7 @@
         @endforeach
         </tbody>
     </table>
-
+    </div>
     <script>
         $(document).ready(function () {
             $('#roomTable').DataTable({

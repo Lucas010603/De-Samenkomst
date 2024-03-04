@@ -1,6 +1,7 @@
 @extends("components.main")
 
 @section('content')
+    <div class="overflow-auto">
     <table id="userTable" class="table">
         <thead>
 
@@ -27,6 +28,7 @@
         @endforeach
         </tbody>
     </table>
+    </div>
 
     <script>
         $(document).ready(function () {

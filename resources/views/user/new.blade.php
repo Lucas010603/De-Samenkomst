@@ -1,7 +1,7 @@
 @extends("components.main")
 
 @section('content')
-    <h1>Klant aanmaken</h1>
+    <h1>Gebruiker aanmaken</h1>
     <form method="post" action="{{ route('api.user.store') }}" data-handle-errors>
         @csrf
 

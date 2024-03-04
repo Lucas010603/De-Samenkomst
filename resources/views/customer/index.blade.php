@@ -9,6 +9,7 @@
             <option value="deleted">Verwijderde gebruikers</option>
         </select>
     </div>
+<div class="overflow-auto">
     <table id="customerTable" class="table">
         <thead>
         <tr>
@@ -23,6 +24,7 @@
         </tbody>
 
     </table>
+</div>
     <script>
         $(document).ready(function () {
             $('#customerTable').DataTable({

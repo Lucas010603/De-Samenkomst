@@ -1,12 +1,9 @@
 @extends("components.main")
 
 @section('content')
-    <h1>Klant Bewerken</h1>
+    <h1>Gebruiker Bewerken</h1>
     <form method="post" action="{{ route('api.user.update', ['id' => $user->id]) }}" data-handle-errors>
-
         @csrf
-
-
         <div class="mb-3">
             <label for="email" class="form-label">E-mailadres</label>
             <input type="text" class="form-control" id="email" name="email" data-error-message="Vul een E-mail in"
