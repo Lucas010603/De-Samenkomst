@@ -13,7 +13,6 @@ class Reservation extends Model
     public $timestamps = false;
     use HasFactory;
 
-
     protected static function boot()
     {
         parent::boot();

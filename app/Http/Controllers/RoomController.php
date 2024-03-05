@@ -40,7 +40,7 @@ class RoomController extends Controller
     {
         $data = $request->validate(
             [
-                'number' => 'required|numeric',
+                'number' => 'required',
                 'name' => 'required',
                 'max_capacity' => 'required|numeric',
                 'type_id' => 'required',
@@ -56,7 +56,7 @@ class RoomController extends Controller
     {
         $data = $request->validate(
             [
-                'number' => 'required|numeric',
+                'number' => 'required',
                 'name' => 'required',
                 'max_capacity' => 'required|numeric',
                 'type_id' => 'required',

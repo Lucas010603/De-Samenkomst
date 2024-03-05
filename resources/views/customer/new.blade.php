@@ -7,8 +7,8 @@
         @method('post')
 
         <div class="mb-3">
-            <label for="Name" class="form-label">Naam</label>
-            <input type="text" class="form-control" id="Name" name="Name" placeholder="Naam">
+            <label for="name" class="form-label">Naam</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Naam">
 
         </div>
         <div class="mb-3">
