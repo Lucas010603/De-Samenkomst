@@ -1,3 +1,5 @@
+# about
+De-Samenkomst is the first practice exam that I made together with two other students as a way of practicing for the final exam of my MBO school.
 # installation
 
 ### software requirements:
@@ -8,7 +10,7 @@
 
 To run this project in development mode you must first clone the github repo: 
 
-`https://github.com/De-Samenkomst/De-Samenkomst.git `
+`https://github.com/Lucas010603/De-Samenkomst/ `
 
 Now you can configure your database by adding the provided database to your database server and configuring the .env
 
